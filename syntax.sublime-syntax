@@ -1,0 +1,52 @@
+%YAML 1.2
+
+file_extensions:
+  - txt
+scope: source.txt
+contexts:
+  main:
+
+    - match: '"'
+      scope: punctuation.definition.string.begin
+      push: quoted_string
+
+    - match: \[
+      scope: punctuation.definition.comment
+      push: comment
+
+    - match: '\b[a-zA-Z][a-zA-Z0-9]*\b'
+      scope: constant.numeric
+
+    - match: \(
+      push: brackets
+    - match: \)
+      scope: invalid.illegal.stray-bracket-end
+
+    - match: \{
+      push: cbrackets
+    - match: \}
+      scope: invalid.illegal.stray-bracket-end
+
+  quoted_string:
+    - meta_scope: string.quoted
+    - match: '"'
+      scope: punctuation.definition.string.end
+      pop: true
+
+  comment:
+    - meta_scope: comment.line
+    - match: \]
+      pop: true
+    - match: \[
+      push: comment
+
+  brackets:
+    - match: \)
+      pop: true
+    - include: main
+
+  cbrackets:
+    - match: \}
+      pop: true
+    - include: main
+   

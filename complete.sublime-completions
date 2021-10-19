@@ -1,0 +1,10 @@
+{
+    "scope": "source.txt",
+    "completions":
+    [
+    { "trigger": "alt", "contents": "|($0)" },
+    { "trigger": "conc", "contents": "+($0)" },
+    { "trigger": "eq", "contents": "=($0)" },
+    { "trigger": "rep", "contents": "{$0,}"}
+    ]
+}

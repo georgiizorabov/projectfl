@@ -1,0 +1,3 @@
+A = (S?)
+]wrong comment[
+M = (A + G + "azaza"?)
